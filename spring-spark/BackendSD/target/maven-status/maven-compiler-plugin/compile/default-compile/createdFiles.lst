@@ -1,0 +1,5 @@
+com\backendsd\backendsd\db\DepartureRepo.class
+com\backendsd\backendsd\entity\Departure.class
+com\backendsd\backendsd\controller\DepartureController.class
+com\backendsd\backendsd\BackendSdApplication.class
+com\backendsd\backendsd\db\MongoRepo.class
