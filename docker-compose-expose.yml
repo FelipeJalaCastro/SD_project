@@ -71,6 +71,20 @@ services:
     networks:
       - producer_consumer_layer
   
+  frontend-sd:
+    build: ./vue/frontend
+    container_name: "frontend-sd"
+    ports:
+      - 8080:8080
+    links:
+      - backend-sd
+    depends_on:
+      - backend-sd
+    networks:
+      - producer_consumer_layer
+    volumes:
+      - './vue/frontend/static:/vue/frontend/static'
+    
 networks:
   producer_consumer_layer:
     name: prod_cons_layer
