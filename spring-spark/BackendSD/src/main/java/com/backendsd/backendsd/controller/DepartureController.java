@@ -6,6 +6,8 @@ import com.backendsd.backendsd.entity.Departure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -27,9 +29,19 @@ public class DepartureController{
         return depRepo.findByTiempoEstimadoSalida(status);
     }
 
-    @GetMapping("/findLate")
+    @GetMapping("/findDelayed")
     public List<Departure> getLateDepartures(){
-
+        List<String> statuses = Arrays.asList("On time", "Cancelled", "Delayed");
+        return depRepo.findByTiempoEstimadoSalidaIsNotIn(statuses);
     }
+
+    @GetMapping("/findRatio")
+    public long getOnTimeRatio(@RequestParam(name = "status") String status){
+        long departures = depRepo.count();
+        long filtered = depRepo.findByTiempoEstimadoSalida(status).size();
+        return filtered / departures;
+    }
+
+
 
 }

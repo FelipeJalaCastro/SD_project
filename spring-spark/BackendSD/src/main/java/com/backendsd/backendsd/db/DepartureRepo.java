@@ -10,4 +10,6 @@ public interface DepartureRepo extends MongoRepository<Departure, String> {
 
     List<Departure> findByLocationName(String locationName);
     List<Departure> findByTiempoEstimadoSalida(String status);
+
+    List<Departure> findByTiempoEstimadoSalidaIsNotIn(List<String> statuses);
 }
